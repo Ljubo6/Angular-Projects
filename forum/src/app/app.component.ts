@@ -14,7 +14,7 @@ export interface Post{
 export class AppComponent implements OnInit{
   posts: Post[] = [
     {title:'I want to learn Angular components',text:'I am still learning components',id:1},
-    {title: 'Next block',text: 'It will be about directives and more about pipes',id: 2}
+    //{title: 'Next block',text: 'It will be about directives and more about pipes',id: 2}
   ]
   ngOnInit() {
     setTimeout(() => {
