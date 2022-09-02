@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Angular-Pipes';
+  e: number = Math.E
+  str: string = 'hello world'
+  date: Date = new Date()
+  float: number = 0.42
+  obj:Object = {
+    a: 1,
+    b:{
+      c:2,
+      d:{
+        e:3,
+        f:4
+      }
+    }
+  }
 }
