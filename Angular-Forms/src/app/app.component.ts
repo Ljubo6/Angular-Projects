@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {MyValidators} from "./my.validators";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit{
     this.form = new FormGroup({
       email: new FormControl(null,[
         Validators.required,
-        Validators.email
+        Validators.email,
+        MyValidators.restrictedEmails
       ]),
       password: new FormControl(null,[
         Validators.required,
@@ -22,7 +24,9 @@ export class AppComponent implements OnInit{
       address: new FormGroup({
         country: new FormControl('bg'),
         city: new FormControl('Sofia',Validators.required)
-      })
+      }),
+      skills: new FormArray([])
+
     })
   }
 
@@ -46,5 +50,15 @@ export class AppComponent implements OnInit{
     this.form.patchValue({
       address:{city: city}
     })
+  }
+
+  addSkill() {
+    const control = new FormControl(null,Validators.required);
+    // (<FormArray>this.form.get('skills'))
+    (this.form.get('skills') as FormArray).push(control)
+  }
+
+  getSkills(form: any) {
+    return form.get('skills')?.controls
   }
 }

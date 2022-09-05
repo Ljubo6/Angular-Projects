@@ -16,6 +16,9 @@
         <small *ngIf="form.get('email')?.errors?.['email']">
           Enter correct email
         </small>
+        <small *ngIf="form.get('email')?.errors?.['restrictedEmail']">
+          Email {{form.get('email')?.value}} banned
+        </small>
       </div>
     </div>
 
@@ -57,12 +60,15 @@
       <button class="btn" type="button" (click)="setCapital()">Choose capital</button>
     </div>
 
-    <div class="card">
+    <div class="card" formGroupName="skills">
       <h2>Your habits</h2>
-      <button class="btn" type="button">Your skills</button>
-      <div class="form-control">
-        <label></label>
-        <input type="text">
+      <button class="btn" type="button" (click)="addSkill()">Your skills</button>
+      <div
+        class="form-control"
+        *ngFor="let control of getSkills(form);let idx = index"
+      >
+        <label>Skill {{idx + 1}}</label>
+        <input type="text" [formControlName]="idx">
       </div>
     </div>
 
