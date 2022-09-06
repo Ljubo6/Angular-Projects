@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {MyValidators} from "./my.validators";
 
 @Component({
@@ -9,18 +9,28 @@ import {MyValidators} from "./my.validators";
 })
 export class AppComponent implements OnInit{
   form!: FormGroup
+  constructor(protected fb: FormBuilder) {
+  }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      email: new FormControl(null,[
-        Validators.required,
-        Validators.email,
-        MyValidators.restrictedEmails
-      ]),
-      password: new FormControl(null,[
-        Validators.required,
-        Validators.minLength(6)
-      ]),
+    this.form = this.fb.group({
+      email: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.email,
+          MyValidators.restrictedEmails
+        ]),
+        MyValidators.uniqEmail
+
+      ],
+      password: [
+        null,
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6)
+        ])
+        ],
       address: new FormGroup({
         country: new FormControl('bg'),
         city: new FormControl('Sofia',Validators.required)
@@ -35,6 +45,7 @@ export class AppComponent implements OnInit{
       console.log('Form: ',this.form)
       const formData = {...this.form.value}
       console.log('Form data: ',formData)
+      this.form.reset()
     }
 
   }

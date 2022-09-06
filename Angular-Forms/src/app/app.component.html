@@ -19,6 +19,9 @@
         <small *ngIf="form.get('email')?.errors?.['restrictedEmail']">
           Email {{form.get('email')?.value}} banned
         </small>
+        <small *ngIf="form.get('email')?.errors?.['uniqEmail']">
+          Email {{form.get('email')?.value}} is busy.
+        </small>
       </div>
     </div>
 
@@ -72,7 +75,7 @@
       </div>
     </div>
 
-    <button class="btn" type="submit" [disabled]="form.invalid">Send</button>
+    <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Send</button>
 
   </form>
 </div>
