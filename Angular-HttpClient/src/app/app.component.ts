@@ -3,6 +3,7 @@ import {Todo, TodosService} from "./todos.service";
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit{
   todos:Todo[] = []
   loading = false
   todoTitle = ''
+  error = ''
 
   constructor(private todosService: TodosService) {
 
@@ -40,10 +42,15 @@ export class AppComponent implements OnInit{
   fetchTodos(){
     this.loading = true
     this.todosService.fetchTodos()
-      .subscribe(todos => {
-        console.log(todos)
-        this.todos = todos
-        this.loading = false
+      .subscribe({
+        next: (todos) => {
+          console.log(todos)
+          this.todos = todos
+          this.loading = false
+        },
+        error: error => {
+          this.error = error.message
+        }
       })
   }
 
