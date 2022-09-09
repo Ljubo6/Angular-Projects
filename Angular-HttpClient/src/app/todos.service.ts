@@ -25,7 +25,6 @@ export class TodosService {
     params = params.append('_limit','4')
     params = params.append('custom','anything')
     return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos',{
-      //params: new HttpParams().set('_limit','3')
       params
     })
       .pipe(delay(500),
