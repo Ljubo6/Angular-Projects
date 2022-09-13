@@ -6,7 +6,7 @@ import {PostsComponent} from "./posts/posts.component";
 import {PostComponent} from "./post/post.component";
 import {AboutExtraComponent} from "./about-extra/about-extra.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
-import {AuthGuard} from "../../auth.guard";
+import {AuthGuard} from "./auth.guard";
 
 //http://localhost:4200/ -> HomeComponent
 //http://localhost:4200/about -> AboutComponent
