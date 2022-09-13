@@ -8,6 +8,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { AboutExtraPageComponent } from './about-page/about-extra-page/about-extra-page.component';
 import { ColorDirective } from './color.directive';
 import { PageNamePipe } from './page-name.pipe';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PageNamePipe } from './page-name.pipe';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
