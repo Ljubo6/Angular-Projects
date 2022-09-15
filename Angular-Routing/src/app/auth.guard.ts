@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> c5d3590e905b9a0303ef67c85622ca026312636b
 import {
   ActivatedRouteSnapshot,
   CanActivate,
